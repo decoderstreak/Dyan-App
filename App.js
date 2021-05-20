@@ -13,12 +13,15 @@ import {
 
 
 import Login from './login/Login.js'
-
+import First from './first/First.js'
+import Onboarding from './onboarding/Oboarding.js';
 class App extends React.Component{
   render(){
     return(
       <View>
-        <Login></Login>
+        {/* <Login></Login> */}
+        {/* <First></First> */}
+        <Onboarding></Onboarding>
       </View>
     )
   }
