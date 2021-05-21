@@ -1,45 +1,99 @@
-import React from 'react';
-import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
-    Image, TouchableOpacity
-} from 'react-native';
+import React,{useState} from 'react'
+import {View,Text,StyleSheet,TouchableOpacity,Image} from 'react-native';
+import {TextInput} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+import logo from '../login/Logo.png';
 import Svg, {
     G,
     Path,
     Defs,
 } from 'react-native-svg';
-import logo from '../login/Logo.png'
-export default class Login extends React.Component {
-    render() {
-        return (
-            <View style={{backgroundColor:"rgba(37, 51, 52, 0.95)"}}>
-                <View >
+
+
+
+class Login extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+          check:false,
+          password:'',
+          email:'',
+    
+        }
+    }
+    signupbuttonclicking=()=>{ 
+        console.log("hiiii", this.state.email,this.state.password)
+        auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+          .then(() => {
+            console.log('signed in!');
+            alert("let's navigate to home screen");
+            
+          })
+          .catch(error => {
+            alert(error.code)
+            console.log(error.code);
+            console.log(error.message);
+            // if (error.code === 'auth/invalid-email') {
+            //   console.log('That email address is invalid!');
+            //   alert(error.code)
+            // }
+          })
+        }
+
+  render(){
+    return(
+        <View style={{backgroundColor:"rgba(37, 51, 52, 0.95)"}}>
+            {/* <Text>Hoo login screen</Text> */}
+            <View >
                     <Image source={logo}></Image>
                 </View>
                 <View style={{ marginTop:-95, marginLeft: 35 }}>
                     <Text style={{ color: 'white', fontSize: 30, fontFamily: 'Alegreya', fontWeight: '500' }}>Sign In</Text>
                 </View>
-                <View style={{ marginLeft: 34, marginTop: 5 }}>
+                <View style={{ marginLeft: 30, marginTop: 5 }}>
                     <Text style={{ color: 'white', fontSize: 19, fontWeight: '400', opacity: 0.5 }}>Sign in now to access your excercises</Text>
                     <Text style={{ color: 'white', fontSize: 19, fontWeight: '400', opacity: 0.5 }}>and saved music</Text>
                 </View>
-                <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 20, marginLeft: 35, marginTop: 50 }}>
-                    <TextInput placeholder='Email Address' style={{ fontSize: 16, opacity: 0.6 }}></TextInput></View>
-                <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 20, marginLeft: 35, marginTop: 10 }}>
-                    <TextInput placeholder='Password' style={{ fontSize: 16, opacity: 0.6 }}></TextInput></View>
-                <View style={{ marginTop: 0, marginLeft: 258 }}><Text style={{ color: '#BEC2C2', fontSize: 14, fontWeight: '400', opacity: 0.8 }}>Forgot Password?</Text></View>
-                <View style={{ marginLeft: 32, marginTop: 29 }}>
-                    <TouchableOpacity style={{ height: 61, width: 321, backgroundColor: "rgba(244, 255, 230, 0.15)", borderRadius: 10, justifyContent: 'center' }}>
+                <View style={{  margin: 20, marginLeft: 35, marginTop: 50, }}>
+            <TextInput
+                label={'Email'}
+                mode='flat'
+                onChangeText={(emailvalue)=>{this.setState({email:emailvalue})}}
+                theme={{ colors: { primary: 'white',}}}
+                  style={{borderColor: 'white',  fontStyle: 'italic', color: "white",borderBottomWidth:1,backgroundColor:"rgba(37, 51, 52, 0.95)",}}
+                
+                
+                />
+                <View style={{paddingTop:30}}>
+                 <TextInput
+                label={'Password'}
+                mode='flat'
+                theme={{ colors: { primary: 'white',underlineColor:'transparent',}}}
+                style={{ borderColor: 'white', fontStyle: 'italic', color: 'white',borderBottomWidth:1,backgroundColor:"rgba(37, 51, 52, 0.95)"}}
+              
+              
+                // secureTextEntry='false'
+                onChangeText={(passvalue)=>{this.setState({password:passvalue})}}
+                
+                
+                />
+                </View>
+                </View>
+
+          {/* <TouchableOpacity  style={styles.button} onPress={this.signupbuttonclicking}><Text style={styles.ButtonText}>Signup</Text></TouchableOpacity> */}
+                  <View style={{ marginLeft: 20, marginTop: 29 }}>
+                    <TouchableOpacity style={{ height: 61, width: 321, backgroundColor: "rgba(244, 255, 230, 0.15)", borderRadius: 10, justifyContent: 'center' }} onPress={this.signupbuttonclicking}>
                         <Text style={{ color: 'white', fontSize: 20, fontWeight: 'normal', marginLeft: 134 }}>LOGIN</Text>
                     </TouchableOpacity></View>
-                <View><Text style={{ color: 'white', fontSize: 16, marginLeft: 70, marginTop: 20 }}>Don’t have an account?  Sign Up</Text></View>
-                <View style={{ marginLeft: 12 }}>
+
+                    <View style={{flexDirection:"row",marginLeft: 70, marginTop: 20}}>
+                        <Text style={{ color: 'white', fontSize: 16,fontWeight:"400",fontFamily:"Alegreya Sans" }}>Don’t have an account?</Text>
+                    <TouchableOpacity style={{paddingLeft:10}}>
+                        <Text style={{ color: 'white', fontSize: 16,fontWeight:"400",fontFamily:"Alegreya Sans" }}>Signup</Text>
+                    </TouchableOpacity>
+                    </View>
+                  
+                    <View style={{ marginLeft: 12 }}>
                     <Svg width="435" height="254" viewBox="0 0 435 254" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <G opacity="0.3">
                             <Path d="M404.344 10.4541C395.294 15.5185 387.149 22.1398 377.708 26.5135C367.244 31.361 356.046 34.6382 345.08 38.1254C334.368 41.5322 323.852 45.2051 313.71 50.0906C304.218 54.6632 295.139 59.9835 286.221 65.5788C277.386 71.1216 267.825 77.1963 261.966 86.0609C261.842 85.5591 261.718 85.0572 261.594 84.5554C265.298 87.0289 271.147 86.0464 275.288 85.5926C279.417 85.1411 283.53 84.3665 287.686 84.2134C300.898 83.726 313.895 82.6173 326.712 79.1658C350.482 72.7624 370.764 59.0044 387.439 41.1164C396.478 31.4214 404.422 20.7762 411.686 9.70301C412.409 8.59871 413.937 10.1032 413.321 11.0409C400.125 31.1598 384.518 50.1845 364.622 64.014C342.7 79.2507 316.698 85.6373 290.254 86.3024C284.883 86.4376 279.639 87.3754 274.298 87.8784C269.901 88.2908 264.57 88.8094 260.702 86.2275C260.29 85.9525 260.044 85.1545 260.33 84.723C265.24 77.2947 272.636 71.8581 279.959 66.9905C288.575 61.2644 297.497 55.9128 306.673 51.1357C316.926 45.7986 327.53 41.4965 338.515 37.9242C349.7 34.2872 361.009 30.9799 371.925 26.5694C383.307 21.9722 392.751 14.4041 403.382 8.45564C404.398 7.88784 405.369 9.88073 404.344 10.4541Z" fill="#46A4A4" />
@@ -69,8 +123,39 @@ export default class Login extends React.Component {
                         </G>
                     </Svg>
                 </View>
-
-            </View>
-        )
-    }
+        </View>
+    );
 }
+}
+
+export default Login;
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1, 
+      backgroundColor: '#191720'
+    },
+   
+   
+    ButtonText: {
+      fontSize: 18,
+      color: "#fff",
+      
+      fontWeight: "bold",
+      alignSelf: "center",
+     
+    },
+
+    button: {
+        marginTop: 30,
+        
+        alignSelf:'stretch',
+        alignItems:"center",
+        padding:20,
+        backgroundColor:"black",
+        marginTop:10,
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 12
+    },
+  });

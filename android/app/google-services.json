@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552884070875",
+    "project_id": "dhyan-app",
+    "storage_bucket": "dhyan-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552884070875:android:0b158107b62ba010c75ffe",
+        "android_client_info": {
+          "package_name": "com.dyan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552884070875-sehai375ikairig99bnrq6klt1g09466.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwH5C7-GdiMp8QXDJE4bG3YcrJQSVmKhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552884070875-sehai375ikairig99bnrq6klt1g09466.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
