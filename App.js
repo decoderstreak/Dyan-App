@@ -15,13 +15,15 @@ import {
 import Login from './login/Login.js'
 import First from './first/First.js'
 import Onboarding from './onboarding/Oboarding.js';
+import Tools from './tools/Tools.js';
 class App extends React.Component{
   render(){
     return(
       <View>
         {/* <Login></Login> */}
         {/* <First></First> */}
-        <Onboarding></Onboarding>
+        {/* <Onboarding></Onboarding> */}
+        <Tools></Tools>
       </View>
     )
   }
