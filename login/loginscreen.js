@@ -88,7 +88,7 @@ class Login extends React.Component{
 
                     <View style={{flexDirection:"row",marginLeft: 70, marginTop: 20}}>
                         <Text style={{ color: 'white', fontSize: 16,fontWeight:"400",fontFamily:"Alegreya Sans" }}>Don’t have an account?</Text>
-                    <TouchableOpacity style={{paddingLeft:10}}>
+                    <TouchableOpacity style={{paddingLeft:10}} onPress={() => this.props.navigation.navigate('Signup')}>
                         <Text style={{ color: 'white', fontSize: 16,fontWeight:"400",fontFamily:"Alegreya Sans" }}>Signup</Text>
                     </TouchableOpacity>
                     </View>

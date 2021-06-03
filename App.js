@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import {
@@ -9,23 +10,26 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import 'react-native-gesture-handler';
 
 
-
-// import Login from './login/Login.js'
-// import PhoneVerification from './login/homescreen';
-// import Login from './login/Login';
-import Home from './login/homescreen'
-import Login from './login/loginscreen'
+import Home from './Screens/Home'
+import Onboarding from './onboarding/Oboarding';
+import First from './first/First'
+import Stacknav from './Navigation/navigation'
+import { NavigationContainer } from '@react-navigation/native';
 class App extends React.Component{
   render(){
     return(
-      
-     <View>
-       {/* <Home /> */}
-       <Login />
-     </View>
-       
+     
+     
+      //  <NavigationContainer>
+      //  <Stacknav />
+      //  </NavigationContainer>
+      <NavigationContainer>
+      <Home />
+      </NavigationContainer>
+     
     )
   }
 }
