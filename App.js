@@ -32,8 +32,8 @@ class App extends React.Component{
   render(){
     return(
       <View>
-        <Text>hello Hack how are you doing</Text>
-        <Text>The next task is setting up the firebase in my project</Text>
+       
+        <Text> Working with the main page</Text>
         <Splashscreen />
       </View>
     )
